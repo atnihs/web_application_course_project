@@ -1,0 +1,73 @@
+﻿@model IEnumerable<REALTEST.Products>
+
+@{
+    ViewBag.Title = "ListProducts";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>ListProducts</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateProduct")
+</p>
+<table class="table" >
+    <thead>
+        <tr>
+            <th>
+               Mã sản phẩm
+            </th>
+            <th>
+                Tên sản phẩm
+            </th>
+            <th>
+                Giá sản phẩm
+            </th>
+            <th>
+                Số lượng trong kho
+            </th>
+            <th>
+                Mô tả sản phẩm
+            </th>
+            <th>
+                Ảnh minh họa
+            </th>
+            <th>
+                Mã loại sản phẩm
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Detail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductImage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryId)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditProduct", new { ProductID=item.ProductID }) |
+                @Html.ActionLink("Delete", "h", new { ProductID = item.ProductID })
+            </td>
+        </tr>
+    }
+
+</table>

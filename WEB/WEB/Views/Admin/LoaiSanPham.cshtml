@@ -1,0 +1,37 @@
+﻿@using REALTEST.Models;
+
+
+@model IEnumerable<REALTEST.Models.Category>
+
+@{
+    ViewBag.Title = "LoaiSanPham";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 style="text-align:center">Danh sach loai san pham cua cua hang !!! </h2>
+
+<p>
+    @Html.ActionLink("Create New", "themLoaiSanPham")
+</p>
+<table class="table" cellpadding="10" >
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoryName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "suaLoaiSanPham", new { id=item.CategoryID }) |
+
+            @Html.ActionLink("Delete", "xoaLoaiSanPham", new { id=item.CategoryID })
+        </td>
+    </tr>
+}
+
+</table>

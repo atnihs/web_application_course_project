@@ -1,0 +1,152 @@
+﻿@using REALTEST.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>@ViewBag.Title.</h2>
+ <!--===============================================================================================-->
+<link rel="icon" type="image/png" href="~/Template/admin/images/icons/favicon.ico" />
+<!--===============================================================================================-->
+
+<link rel="stylesheet" type="text/css" href="~/Template/admin/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/Template/admin/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/Template/admin/fonts/iconic/css/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/Template/admin/vendor/animate/animate.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/Template/admin/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/Template/admin/vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/Template/admin/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/Template/admin/vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/Template/admin/css/util.css">
+<link rel="stylesheet" type="text/css" href="~/Template/admin/css/main.css">
+<!--===============================================================================================-->
+@*<div class="row">*@
+    @*<div class="col-md-8">*@
+        <section id="loginForm">
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+
+
+                @Html.AntiForgeryToken()
+
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="limiter">
+                    <div class="container-login100" style="background-image: url('../../Template/admin/images/bg-01.jpg');">
+                        <div class="wrap-login100">
+                            <form class="login100-form validate-form">
+                                <span class="login100-form-logo">
+                                    <i class="zmdi zmdi-landscape"></i>
+                                </span>
+                                <span class="login100-form-title p-b-34 p-t-27">
+                                    Log in
+                                </span>
+                                <div class="wrap-input100 validate-input" data-validate="Enter username">
+                                    @*Email*@
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                                        <div class="col-md-10">
+                                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="wrap-input100 validate-input" data-validate="Enter password">
+                                    @*Password*@
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                                        <div class="col-md-10">
+                                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="contact100-form-checkbox">
+                                    @*Remember*@
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-md-10">
+                                            <div class="checkbox">
+                                                @Html.CheckBoxFor(m => m.RememberMe)
+                                                @Html.LabelFor(m => m.RememberMe)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container-login100-form-btn">
+                                    <button class="login100-form-btn">
+                                       Log in
+                                        @*<div class="form-group">
+                                            <div class="col-md-offset-2 col-md-10">
+                                                <input type="submit" value="" class="btn btn-default" />
+                                            </div>
+                                        </div>*@
+                                    </button>
+                                </div>
+                               
+                                <div class="text-center p-t-90">
+                                    @*<a class="txt1" href="#">
+                                        @Html.ActionLink("Register as a new user", "Register")
+                                    </a>*@
+                                </div>
+                                @* Enable this once you have account confirmation enabled for password reset functionality
+                                    <p>
+                                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
+
+                                    </p>*@
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </section>
+        <div id="dropDownSelect1"></div>
+
+        <!--===============================================================================================-->
+        <script src="~/Template/admin/vendor/jquery/jquery-3.2.1.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="~/Template/admin/vendor/animsition/js/animsition.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="~/Template/admin/vendor/bootstrap/js/popper.js"></script>
+        <script src="~/Template/admin/vendor/bootstrap/js/bootstrap.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="~/Template/admin/vendor/select2/select2.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="~/Template/admin/vendor/daterangepicker/moment.min.js"></script>
+        <script src="~/Template/admin/vendor/daterangepicker/daterangepicker.js"></script>
+        <!--===============================================================================================-->
+        <script src="~/Template/admin/vendor/countdowntime/countdowntime.js"></script>
+        <!--===============================================================================================-->
+        <script src="~/Template/admin/js/main.js"></script>
+    @*</div>*@
+    <div class="col-md-4">
+        <section id="socialLoginForm">
+            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+        </section>
+    </div>
+@*</div>*@
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+
+
+
